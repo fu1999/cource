@@ -1,5 +1,8 @@
 const Router = require('koa-router')
-const admin = require('./router/index')
+const auth = require('./router/index')
+const admin = require('./router/admin/index')
+const teacher = require("./router/teacher/index")
+const student = require("./router/student/index")
 // bodyParser
 const bodyParser = require('koa-bodyparser')
 //  KoaStatic
@@ -40,7 +43,13 @@ app.use(bodyParser())
 
 // router挂载到app
 var router = new Router()
+// 人员相关
+router.use('/auth',auth.routes())
 router.use('/super',admin.routes())
+router.use('/teacher',teacher.routes())
+router.use('/student',student.routes())
+
+// router.use('/super',admin.routes())
 
 
 app.use(router.routes())
