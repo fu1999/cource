@@ -3,6 +3,7 @@ const Db  = require("../../controller/student/index")
 var router = new Router();
 
 router.get("/myCource",Db.myCorce.bind(Db))
+router.post("/searchCource",Db.searchCource.bind(Db))
 router.post("/chooseCource",Db.chooseCource.bind(Db))
 
 

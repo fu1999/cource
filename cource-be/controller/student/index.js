@@ -60,6 +60,23 @@ class Student {
         console.log(rs)
         return rs
     }
+
+    async searchCource(ctx){
+        let {   name  } = ctx.request.body
+        let rs  = await db(`select * from cource where name  like '%${name}%' `)
+        console.log(rs)
+        if(rs.length>0){
+            ctx.body = {
+                code:1,
+                data:rs
+            }
+        }else {
+            ctx.body = {
+                code:-2,
+                message:`暂无数据`
+            }
+        }
+    }
 }
 
 
